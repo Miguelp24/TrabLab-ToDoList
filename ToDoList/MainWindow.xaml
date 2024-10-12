@@ -1,0 +1,212 @@
+﻿<Window x:Class="ToDoList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:Xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoList"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="To-Do List" Height="700" Width="800" 
+        Closing="MainWindow_Closing"
+        Icon="/Icon/ToDo.png">
+  
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <!-- Grid Coluna da esquerda-->
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="650"/>
+            </Grid.RowDefinitions>
+
+
+            <Border Grid.Row="1" CornerRadius="0,50,0,0" Background="#3C5B6F">
+                <DockPanel>
+                    <Button x:Name="btn_editprof" DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" Padding="10" Height="37" Margin="0,0,16,576" Width="37" Click="editprofile_click" >
+                        <Icon:PackIconMaterial Kind="AccountEdit" Foreground="White" Height="20" Width="20" Margin="0,0,-6,-6"/>
+                    </Button>
+                    <!--Profile Img-->
+                    <Border Height="90" Width="90" Padding="3" Background="White" CornerRadius="100"
+                            DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20,-30,0,0" >
+
+                        <Ellipse x:Name="imagemper">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="ProfileImageBrush"/>
+
+                            </Ellipse.Fill>
+                        </Ellipse>
+
+                    </Border>
+                    <!--Profile Text Nome e Email-->
+                    <TextBlock x:Name="TB_name"  DockPanel.Dock="Top" Foreground="White" 
+            FontSize="22" FontWeight="SemiBold" TextAlignment="Center" Margin="20 10 20 10"/>
+
+                    
+
+                    <!--Butoes e icons-->
+
+                    <StackPanel DockPanel.Dock="Top" Margin="0,100,0,0">
+
+                        <Button x:Name="TodasButton" Click="TodasButton_Click" Style="{StaticResource MenuButton}" >
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="Home" Style="{StaticResource MenuButtonIcon}"/>
+                                <TextBlock Text="Todas"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="PendentesButton" Click="PendentesButton_Click" Style="{StaticResource MenuButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="ListStatus" Style="{StaticResource MenuButtonIcon}"/>
+                                <TextBlock Text="Pendentes"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="ConcluidasButton" Click="ConcluidasButton_Click" Style="{StaticResource MenuButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="PlaylistCheck" Style="{StaticResource MenuButtonIcon}"/>
+                                <TextBlock Text="Concluidas"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+
+                    <!--Botao Adicionar Tarefa  -->
+                    <Button x:Name="btn_addtarefa" DockPanel.Dock="Bottom" Style="{StaticResource AddButton}" Click="adicionatarefa_click" Width="140">
+                        <StackPanel Orientation="Horizontal" >
+                            <Icon:PackIconMaterial Kind="Plus" Style="{StaticResource MenuButtonIcon}" Margin="10 0 10 0"/>
+                            <TextBlock Text="Adicionar Tarefa"/>
+
+                        </StackPanel>
+
+
+                    </Button>
+
+
+                </DockPanel>
+
+            </Border>
+
+            <!--Coluna da Direita-->
+
+
+
+
+            <!--<StackPanel Grid.Row ="1" Orientation="Vertical" >
+                
+                <TextBlock x:Name="Userinfo" Text="Nome Utilizador" FontSize="16" Margin="0,0,0,100"/>
+                <Button x:Name="BtnTodos" Content="Todos" FontSize="16" Margin="0,0,0,10"/>
+                <Button x:Name="BtnPendentes" Content="Pendentes" FontSize="16" Margin="0,0,0,10"/>
+                <Button x:Name="BtnConcluidas" Content="Concluidas" FontSize="16" Margin="0,0,0,10"/>
+
+                <Button x:Name="BtnAdicionar" Content="Adicionar" FontSize="16" VerticalAlignment="Bottom" Margin="0,150,0,0"/>
+            </StackPanel>-->
+        </Grid>
+
+        <!--Grid Coluna da direita-->
+
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="125"/>
+                <RowDefinition Height="575"/>
+            </Grid.RowDefinitions>
+
+            <!--Linha de cima  -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <!--Linha de cima-->
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                        <Icon:PackIconMaterial x:Name="IconPrincipal" Kind="Home" Style="{StaticResource MainSelectionIcon}"/>
+                        <TextBlock x:Name="TextoPrincipalTB" Text="Todas" FontSize="32" FontWeight="SemiBold" 
+                                   Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </DockPanel>
+
+                <!--Linha do meio-->
+                <StackPanel Grid.Row ="1" Orientation="Horizontal">
+
+                    <TextBlock Style="{StaticResource FilterText}" Text="Data Inicio:"/>
+                    <!--<DatePicker x:Name="DateTimeInicioMain" Style="{StaticResource DatePickerStyle} "/>-->
+                    <Xceed:DateTimePicker x:Name="DateTimeInicioMain" MinWidth="100" Margin="2" ValueChanged="DateTimeInicioMain_ValueChanged"/>
+                    <TextBlock  Style="{StaticResource FilterText}" Text="Data Fim:"/>
+                    <Xceed:DateTimePicker x:Name="DateTimeFimMain" MinWidth="100" Margin="2" ValueChanged="DateTimeInicioMain_ValueChanged"/>
+
+                </StackPanel>
+
+                <!--Linha de Baixo-->
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+
+                    <TextBlock Style="{StaticResource FilterText}" Text="Ordenar Por:"/>
+
+                    <ComboBox x:Name="cb_filtro" Width="Auto" MinWidth="100" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Data Inicio Ascendente"/>
+                        <ComboBoxItem Content="Data Inicio Descendente"/>
+                        <ComboBoxItem Content="Data Fim Ascendente"/>
+                        <ComboBoxItem Content="Data Fim Descendente"/>
+                        <ComboBoxItem Content="Importancia Ascendente"/>
+                        <ComboBoxItem Content="Importacia Descendente"/>
+                        <ComboBoxItem Content="Data de Criação Ascendente"/>
+                        <ComboBoxItem Content="Data de Criação Descendente"/>
+
+                    </ComboBox>
+
+                   
+                    <Button x:Name="BTNLimparSelecao" Width="100" Margin="60 2 2 2" Content="Limpar Seleção" Click="BTNLimparSelecao_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <!--Linha de baixo-->
+
+
+            <DataGrid Style="{DynamicResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" Grid.Row="1" x:Name="DataGrid">
+                <DataGrid.Columns>
+                    <!--<DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>-->
+                    <DataGridTextColumn Header="Estado" IsReadOnly="True" Width="80" Binding="{Binding Estado}"/>
+                    <DataGridTextColumn Header="Titulo"  IsReadOnly="True" Width="*" Binding="{Binding Titulo}"/>
+
+                    <!--Butao de editar e apagar -->
+                    <DataGridTemplateColumn Header="Opções"  Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="ButtonEditar" Click="ButtonEditar_Click" Style="{StaticResource gridEditButton}">
+                                        <Icon:PackIconMaterial Kind="Pencil" Style="{StaticResource GridButtonIcon}"/>
+                                    </Button>
+                                    <Button Style="{StaticResource gridRemoveButton}" Click="ButtonRemover_Click">
+                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource GridButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+
+
+            </DataGrid>
+
+
+        </Grid>
+    </Grid>
+</Window>

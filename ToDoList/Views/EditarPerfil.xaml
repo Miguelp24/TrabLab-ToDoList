@@ -1,0 +1,65 @@
+﻿<Window x:Class="ToDoList.Views.EditarPerfil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ToDoList.Views"
+    mc:Ignorable="d"
+    ResizeMode="CanMinimize"
+    Title="Editar Perfil" Height="412" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="114*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="81*"/>
+            <RowDefinition Height="72*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Border Background="#3C5B6F" Height="59">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="AccountEdit" Style="{StaticResource MainSelectionIcon}" VerticalAlignment="Center" Foreground="White" Height="20" Width="20" RenderTransformOrigin="0.493,0.555" Margin="10,0,0,0"/>
+                    <TextBlock Text="Editar Perfil" FontSize="25" FontWeight="SemiBold" Foreground="White" Height="41" Width="162" Margin="10,0,0,-3"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="0,3,0,7">
+            <TextBlock Text="Nome de Utilizador:" FontSize="15" FontWeight="SemiBold" Height="23" Width="143" Margin="-317,21,0,0"/>
+            <TextBox x:Name="tb_username" TextWrapping="Wrap" Width="308" Margin="139,-25,0,0" FontSize="16"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="0,2,0,4">
+            <TextBlock Text="E-mail:" FontSize="15" FontWeight="SemiBold" Height="23" Width="89" Margin="-366,21,0,0"/>
+            <TextBox x:Name="tb_email" TextWrapping="Wrap" Width="404" Margin="65,-25,0,0" FontSize="16"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4">
+            <Button Name="btn_reset" Margin="300,16,0,0" Height="38" Width="35" FontSize="15" FontWeight="SemiBold" Click="btn_reset_Click"/>
+            <StackPanel Orientation="Horizontal">
+                <Icon:PackIconMaterial Kind="Refresh" Foreground="Black" Height="20" Width="20" Margin="383,-27,26,-6"/>
+            </StackPanel>
+            <Button x:Name="btn_saveperfil" Margin="-10,-38,0,0" Height="38" Width="224" FontSize="15" FontWeight="SemiBold" Click="btn_saveperfil_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Guardar Alterações" Margin="0,0,-57,0" Width="168"/>
+                    <Icon:PackIconMaterial Kind="AccountEdit" Foreground="Black" Height="20" Width="20" Margin="-149,0,26,-6"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Margin="0,3,0,0" Grid.Row="1">
+            <Image x:Name="img_perfil" Height="90" Width="90" Margin="-346,10,0,0"/>
+            <Button x:Name="btn_editfoto" Margin="113,-89,0,0" Height="38" Width="224" FontSize="15" FontWeight="SemiBold" Click="btn_editfoto_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Alterar Imagem de Perfil" Margin="0,0,-30,0" Width="168"/>
+                    <Icon:PackIconMaterial Kind="Image" Foreground="Black" Height="20" Width="20" Margin="-169,0,26,-6"/>
+                </StackPanel>
+            </Button>
+            
+
+        </StackPanel>
+
+    </Grid>
+</Window>
